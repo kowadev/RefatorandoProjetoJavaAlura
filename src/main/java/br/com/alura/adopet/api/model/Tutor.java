@@ -18,23 +18,23 @@ public class Tutor {
     @Column(name = "id")
     private Long id;
 
-    @NotBlank
-    @Column(name = "nome")
+
     private String nome;
 
-    @NotBlank
-    @Pattern(regexp = "\\(?\\d{2}\\)?\\d?\\d{4}-?\\d{4}")
-    @Column(name = "telefone")
     private String telefone;
 
-    @NotBlank
-    @Email
-    @Column(name = "email")
     private String email;
 
     @OneToMany(mappedBy = "tutor")
-    @JsonManagedReference("tutor_adocoes")
     private List<Adocao> adocoes;
+
+    public Tutor(){}
+
+    public Tutor(String telefone, String nome, String email) {
+        this.telefone = telefone;
+        this.nome = nome;
+        this.email = email;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -44,48 +44,23 @@ public class Tutor {
         return Objects.equals(id, tutor.id);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public List<Adocao> getAdocoes() {
         return adocoes;
-    }
-
-    public void setAdocoes(List<Adocao> adocoes) {
-        this.adocoes = adocoes;
     }
 }
